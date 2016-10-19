@@ -12,23 +12,38 @@ parameter clk_freq = 1000000000 / tck; // Frequenzy in HZ
 
 	Sensor s1(clk,Sensor);
 	/* Clocking device */
-	initial         clk <= 0;
+	initial begin
+	        clk <= 0;
+		Sensor =0;
+		end
 	always #(tck/2) clk <= ~clk;
+	always #32 Sensor =!Sensor;
 
 
 	initial begin: TEST_WAVE
 		$dumpfile("Sensor_TB.vcd");
 		$dumpvars(-1, s1);
-	
-	#0  reset <= 1;
-	#1 Sensor <= 0;
-	#40 reset <= 0;
+/*	
+	#0  reset = 1;
+//	#1 
+	Sensor = 0;
+	#32 reset = 0;
+	while ($time < 500) begin
+		sensor=!sensor;
+		#32
+		end
+*/
 
-	#1 Sensor <= 1;
-	#100 Sensor <= 0;
+/*
+	#1 Sensor = 1;
+	#32 Sensor = 0;
+	#32 Sensor = 1;
+	#32 Sensor = 0;
+	#32 Sensor = 1;
+	#32 Sensor = 0;
+*/
 
-
-	#(tck*20000) $finish; //tiempo simulación
-
+	#(tck*200)$finish; //tiempo simulación
 	end
+
 endmodule
