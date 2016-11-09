@@ -112,27 +112,25 @@ always @ (posedge final)
 	begin
 	//amarillo,azul,rojo,verde,naranja,blanco.
 	suma= CR+CG+CB+CC;
-	A=abs(suma,32'd);
-	Az=abs(suma,32'd);
-	R=abs(suma,32'd);
-	V=abs(suma,32'd);
-	N=abs(suma,32'd);
-	B=abs(suma,32'd);
+	A=abs(suma,32'd43056);
+	Az=abs(suma,32'd55897);
+	R=abs(suma,32'd49209);
+	V=abs(suma,32'd42677);
+	N=abs(suma,32'd36782);
+	B=abs(suma,32'd25976);
 
-	if(menor(A,Az,R,V,N,B)==1)
-		led=7'b0000001;
-	else if(menor(Az,R,V,N,B,A)==1)
-		led=7'b0000010;
-	else if(menor(R,V,N,B,A,Az)==1)
-		led=7'b0000100;
-	else if(menor(V,N,B,A,Az,R)==1)
-		led=7'b0001000;
-	else if(menor(N,B,A,Az,R,V)==1)
-		led=7'b0010000;
-	else if(menor(B,A,Az,R,V,N)==1)
-		led=7'b0100000;
-	else
-		led=7'b1000000;
+	if (32'd10500<CR && CR<32'd12500 && 32'd12300<CB && CB<32'd14500 && 32'd3700<CC && CC<32'd5700 && 32'd12300<CG && CG<32'd14300)
+		led=7'b0000001;//Amarillo
+	if (32'd11500<CR && CR<32'd23500 && 32'd10500<CB && CB<32'd12500 && 32'd5200<CC && CC<32'd7000 && 32'd19300<CG && CG<32'd22700)
+		led=7'b0000011;//Azul
+	if (32'd13700<CR && CR<32'd15800 && 32'd13500<CB && CB<32'd15000 && 32'd4700<CC && CC<32'd6700 && 32'd19300<CG && CG<32'd21300)
+		led=7'b0000111;//Rojo
+	if (32'd19000<CR && CR<32'd21300 && 32'd14300<CB && CB<32'd16300 && 32'd5200<CC && CC<32'd7200 && 32'd17800<CG && CG<32'd18800)
+		led=7'b0001111;//Verde
+	if (32'd7000<CR && CR<32'd10000 && 32'd9000<CB && CB<32'd12000 && 32'd3000<CC && CC<32'd5000 && 32'd12000<CG && CG<32'd14500)
+		led=7'b0011111;//Naranja
+	if (32'd6000<CR && CR<32'd8500 && 32'd5000<CB && CB<32'd8000 && 32'd1000<CC && CC<32'd5000 && 32'd8000<CG && CG<32'd11000)
+		led=7'b0111111;//Blanco
 	end
 	
 endmodule
