@@ -10,7 +10,7 @@ parameter clk_freq = 1000000000 / tck; // Frequenzy in HZ
 	reg 	clk; //entrada
 	reg	Sensor;
 
-	Sensor s1(clk,Sensor);
+	Sensor s1(.clk(clk),.sensor(Sensor));
 	/* Clocking device */
 	initial begin
 	        clk <= 0;
@@ -47,3 +47,4 @@ parameter clk_freq = 1000000000 / tck; // Frequenzy in HZ
 	end
 
 endmodule
+
